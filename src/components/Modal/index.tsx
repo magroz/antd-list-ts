@@ -1,18 +1,24 @@
-import React, {FC, useState} from 'react';
-import {Modal} from "antd";
+import React, {FC} from 'react';
+import {Modal, Spin} from "antd";
+import {observer} from "mobx-react-lite";
+import data from "../../store/data";
 
-interface IProps {
-    visible: boolean
-    onOk: () => void
-}
-const MyModal: FC<IProps> = ({visible, onOk}) => {
+const MyModal: FC = observer(() => {
+
     return (
-        <Modal title="Basic Modal" visible={visible} onOk={onOk}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+        <Modal
+            title={`id: ${data.userId}`}
+            visible={data.isModalVisible}
+            onOk={data.hideModal}
+            onCancel={data.hideModal}
+            cancelButtonProps={{ hidden: true }}
+        >
+            <Spin spinning={data.isLoadingUser}>
+                <p>{"name: "}{data.user?.name}</p>
+                <p>{"email: "}{data.user?.email}</p>
+            </Spin>
         </Modal>
     )
-}
+})
 
 export default MyModal
