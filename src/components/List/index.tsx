@@ -22,8 +22,7 @@ const MyList: FC = observer(() => {
                     <h1>Body:</h1>
                     <p>{content}</p>
                 </div>
-            ),
-            onOk() {},
+            )
         });
     }
 

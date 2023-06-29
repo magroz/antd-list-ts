@@ -7,9 +7,9 @@ import {AxiosResponse} from "axios";
 export type UserType = number | null
 
 class Data {
-    isLoading: boolean = false
-    isLoadingUser: boolean = false
-    isModalVisible: boolean = false
+    isLoading = false
+    isLoadingUser = false
+    isModalVisible = false
     posts: PostDTO[] = []
     user: UserDTO | null = null
     userId: UserType = null
@@ -46,7 +46,7 @@ class Data {
         jsonPlaceholderAPI
             .getAllPosts()
             .then((response: AxiosResponse<PostDTO[]>) => this.posts = response.data)
-            .catch((error) => console.error(error))
+            .catch(console.error)
             .finally(() => this.isLoading = false)
     }
 
@@ -55,7 +55,7 @@ class Data {
         jsonPlaceholderAPI
             .getUserById(this.userId)
             .then((response: AxiosResponse<UserDTO>) => this.user = response.data)
-            .catch((error) => console.error(error))
+            .catch(console.error)
             .finally(() => this.isLoadingUser = false)
     }
 }
